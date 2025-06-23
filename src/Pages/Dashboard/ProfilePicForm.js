@@ -8,34 +8,39 @@ const ProfilePicForm = ({ email }) => {
   const [image, setImage] = useState();
 
   useEffect(() => {
+    localStorage.setItem('data', JSON.stringify({
+      access_token: "123", user: {
+        email: "154@qq.com"
+      }
+    }))
     const email = JSON.parse(localStorage.getItem("data")).user.email;
-    fetch(`${config.baseUrl}/users/${email}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(({ error, data }) => {
-        // console.log(data)
-        setImage(data.user.image);
-      });
+    // fetch(`${config.baseUrl}/users/${email}`, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then(({ error, data }) => {
+    //     // console.log(data)
+    //     setImage(data.user.image);
+    //   });
   }, []);
-//TODO: remove ALL alerst!!! 
+  //TODO: remove ALL alerst!!! 
   const onSubmit = (data, e) => {
     const formData = new FormData();
     const file = document.querySelector('input[name="image"]');
     formData.append("image", file.files[0]);
-    fetch(`${config.baseUrl}/users/image/${email}`, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setImage(data.user.image);
-      });
+    // fetch(`${config.baseUrl}/users/image/${email}`, {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     setImage(data.user.image);
+    //   });
     setTimeout(() => {
       alert("Updated!")
       e.target.reset()
@@ -45,7 +50,7 @@ const ProfilePicForm = ({ email }) => {
   return (
     <div>
       <div>
-        <img src={image} style={{"height": 200}}alt="pic" />
+        <img src={image} style={{ "height": 200 }} alt="pic" />
       </div>
       <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
         <input

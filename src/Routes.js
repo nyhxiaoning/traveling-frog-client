@@ -15,6 +15,11 @@ import DetailsView from "./Pages/DetailsView/DetailsVIew";
 import Splash from "./Pages/Login/Splash"
 
 const authGuard = (Component) => () => {
+  localStorage.setItem('data', JSON.stringify({
+    access_token: "123", user: {
+      email: "154@qq.com"
+    }
+  }))
   return JSON.parse(localStorage.getItem("data"))?.access_token ? (
     <Component />
   ) : (

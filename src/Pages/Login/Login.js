@@ -15,36 +15,42 @@ const Login = () => {
   // const [password, setPassword] = useState("")
 
   const onSubmit = (data) => {
-    setMessage({
-      data: "Login is in progress...",
-      type: "alert-warning",
-    });
-    fetch(`${config.baseUrl}/session/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then(({ error, data }) => {
-        //   .then((data) => {
-        console.log(data);
-        setMessage({
-          data: error || "Logged in successfully, redirecting...",
-          type: error ? "alert-danger" : "alert-success",
-        });
-  
-        !error &&
-          setTimeout(() => {
-            // console.log(data)
-            localStorage.setItem("data", JSON.stringify(data));
-            // console.log(data)
-            history.push("/");
-          }, 2000);
+    // setMessage({
+    //   data: "Login is in progress...",
+    //   type: "alert-warning",
+    // });
+    // fetch(`${config.baseUrl}/session/login`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((res) => res.json())
+    //   .then(({ error, data }) => {
+    //     //   .then((data) => {
+    //     console.log(data);
+    //     setMessage({
+    //       data: error || "Logged in successfully, redirecting...",
+    //       type: error ? "alert-danger" : "alert-success",
+    //     });
 
-        // !error && e.target.reset();
-      });
+    //     !error &&
+    //       setTimeout(() => {
+    //         // console.log(data)
+    //         localStorage.setItem("data", JSON.stringify(data));
+    //         // console.log(data)
+    //         history.push("/");
+    //       }, 2000);
+
+    //     // !error && e.target.reset();
+    //   });
+    // localStorage.setItem("data", JSON.stringify({ access_token: "123" }));
+    localStorage.setItem('data', JSON.stringify({
+      access_token: "123", user: {
+        email: "154@qq.com"
+      }
+    }))
   };
 
   return (
@@ -133,13 +139,13 @@ const Login = () => {
                 </button>
               </div>
             </form>
-            <form  onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className={styles.demoform}>
                 <button onClick={() => {
-                    setValue("email", "test@gmail.com")
-                    setValue("password", 123456)
-                    }} 
-                    className="btn btn-outline-info">
+                  setValue("email", "test@gmail.com")
+                  setValue("password", 123456)
+                }}
+                  className="btn btn-outline-info">
                   Demo
                 </button>
               </div>

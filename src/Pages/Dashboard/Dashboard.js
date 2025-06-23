@@ -15,14 +15,14 @@ import config from "../../config";
 const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
-    display: 'flex', 
+    display: 'flex',
     color: 'green'
   },
   appBar: {
     backgroundColor: "#fff"
-  }, 
+  },
   tfAvatar: {
-    backgroundColor: "green", 
+    backgroundColor: "green",
     fontWeight: 900
   }
 }));
@@ -43,34 +43,39 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    localStorage.setItem('data', JSON.stringify({
+      access_token: "123", user: {
+        email: "154@qq.com"
+      }
+    }))
     const email = JSON.parse(localStorage.getItem("data")).user.email;
-    fetch(`${config.baseUrl}/users/${email}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": JSON.parse(localStorage.getItem("data")).access_token,
-      },
-    })
-      .then((res) => res.json())
-      .then(({ error, data }) => {
-        // console.log(data)
-        setDashboard(data);
-      });
+    // fetch(`${config.baseUrl}/users/${email}`, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "auth-token": JSON.parse(localStorage.getItem("data")).access_token,
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then(({ error, data }) => {
+    //     // console.log(data)
+    //     setDashboard(data);
+    //   });
   }, []);
 
   return (
     <AppBar className={classes.appBar} position="static">
       <Toolbar>
         <section className={classes.leftToolBar}>
-        <IconButton onClick={() => history.push("/")} aria-label="Dashboard">
+          <IconButton onClick={() => history.push("/")} aria-label="Dashboard">
             <Avatar className={classes.tfAvatar}>TF</Avatar>
           </IconButton>
         </section>
         <Typography variant="h6" gutterButtom className={classes.title}>
-          Traveling Frog 
+          Traveling Frog
         </Typography>
         <div className={classes.root}>
-          <Avatar alt="profile-pic" src={dashboard?.user?.image}/>
+          <Avatar alt="profile-pic" src={dashboard?.user?.image} />
         </div>
         <section className={classes.rightToolbar}>
           <IconButton onClick={() => history.push('/myprofile')} aria-label="Dashboard">

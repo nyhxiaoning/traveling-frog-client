@@ -24,50 +24,50 @@ const EditProfile = () => {
   // console.log(storedUser);
 
   const onSubmit = (data, e) => {
-    setMessage({
-      data: "Update is in progress...",
-      type: "alert-warning",
-    });
-    let body = data 
+    // setMessage({
+    //   data: "Update is in progress...",
+    //   type: "alert-warning",
+    // });
+    let body = data
     body.email = storedUser.email
-    fetch(`${config.baseUrl}/users/${storedUser.email}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then(() => {
-        setMessage({
-          data: "Updated successfully",
-          type: "alert-success",
-        });
-        setTimeout(() => {
-          // console.log(data.first_name);
-          const alldata = JSON.parse(localStorage.getItem("data"));
-          console.log(data)
-          console.log(alldata)
-          // console.log(user.image)
-          Object.assign(alldata.user, data)
-          // data.image = user.image
-          // alldata.user = data;
-          console.log(alldata)
-          localStorage.setItem("data", JSON.stringify(alldata));
-          console.log(data);
-          // setUser({
-          //   first_name: alldata.first_name,
-          //   last_name: alldata.last_name,
-          //   email: alldata.email,
-          //   image: alldata.image,
-          // });
-          history.push("/");
-        }, 2000);
-        // alert("Updated!");
-        //   e.target.reset();
-      });
+    // fetch(`${config.baseUrl}/users/${storedUser.email}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(body),
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then(() => {
+    //     setMessage({
+    //       data: "Updated successfully",
+    //       type: "alert-success",
+    //     });
+    //     setTimeout(() => {
+    //       // console.log(data.first_name);
+    //       const alldata = JSON.parse(localStorage.getItem("data"));
+    //       console.log(data)
+    //       console.log(alldata)
+    //       // console.log(user.image)
+    //       Object.assign(alldata.user, data)
+    //       // data.image = user.image
+    //       // alldata.user = data;
+    //       console.log(alldata)
+    //       localStorage.setItem("data", JSON.stringify(alldata));
+    //       console.log(data);
+    //       // setUser({
+    //       //   first_name: alldata.first_name,
+    //       //   last_name: alldata.last_name,
+    //       //   email: alldata.email,
+    //       //   image: alldata.image,
+    //       // });
+    //       history.push("/");
+    //     }, 2000);
+    //     // alert("Updated!");
+    //     //   e.target.reset();
+    //   });
   };
   //TODO:create a new form component to update pic and also route on backend
   return (
@@ -76,7 +76,7 @@ const EditProfile = () => {
     >
       <div className='header'>
         <h3>Edit your profile</h3>
-      </div> 
+      </div>
       <div className={styles.editProfileFormContainer}>
         {message && (
           <div
@@ -217,7 +217,7 @@ const EditProfile = () => {
             {/* <div>
               <img src={user.image} alt="pic" />
             </div> */}
-            <ProfilePicForm email={user.email} oldPic={user.image}/>
+            <ProfilePicForm email={user.email} oldPic={user.image} />
           </fieldset>
         </div>
       </div>

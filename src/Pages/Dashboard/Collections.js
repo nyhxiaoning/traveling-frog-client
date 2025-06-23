@@ -21,28 +21,30 @@ const Collections = () => {
   const [collections, setCollections] = useState([]);
 
   const getCollections = async () => {
-    const res = await fetch(`${config.baseUrl}/collections`);
-    const data = await res.json();
-    // console.log(data);
-    return data;
+    alert('获取收集的照片')
+    // const res = await fetch(`${config.baseUrl}/collections`);
+    // const data = await res.json();
+    // // console.log(data);
+    // return data;
   };
 
   useEffect(() => {
     (async () => {
-      const collections = await getCollections();
+      // const collections = await getCollections();
+      const collections = []
       setCollections(collections);
     })();
   }, []);
 
   return (
-    
-        <Grid container spacing={4} className={classes.collectionsContainer}>
-            {collections.map((collection) => (
-              <Grid item xs={4}> 
-                <CollectionCard className={classes.paper} key={collection.id} collection={collection} />
-              </Grid>
-            ))}
+
+    <Grid container spacing={4} className={classes.collectionsContainer}>
+      {collections.map((collection) => (
+        <Grid item xs={4}>
+          <CollectionCard className={classes.paper} key={collection.id} collection={collection} />
         </Grid>
+      ))}
+    </Grid>
   );
 };
 

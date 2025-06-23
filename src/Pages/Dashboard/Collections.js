@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import CollectionCard from "./CollectionCard";
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import config from "../../config";
 import "./Collections.css";
+
+import React, { useEffect, useState } from "react";
+
+import Box from '@material-ui/core/Box';
+import CollectionCard from "./CollectionCard";
+import Grid from '@material-ui/core/Grid';
+import config from "../../config";
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +33,17 @@ const Collections = () => {
   useEffect(() => {
     (async () => {
       // const collections = await getCollections();
-      const collections = []
+      const collections = [{
+        id: 1,
+        type: "U.S. National Parks",
+        image: "https://i.pinimg.com/originals/6f/cd/66/6fcd66a405936566e17938daf8c82cb1.jpg"
+      }, {
+        id: 1,
+        type: "States of the U.S.",
+        image: "https://i.redd.it/30363cj9nsl11.jpg"
+      }]
+
+
       setCollections(collections);
     })();
   }, []);

@@ -18,35 +18,49 @@ function Map() {
   });
 
   const locations = useLocation();
-  const typeid = locations.state.id;
- 
+  const typeid = locations.state?.id ? 1 : 1;
+
   // const [visited, setVisited] = useState([])
   const [showPopup, setShowPop] = useState({});
   const { pointsofinterest, setPointsofinterest } = useContext(DetailsViewsContext)
   const getPointsofinterest = async () => {
     // const allpoints = await fetch(`${config.baseUrl}/pointsofinterest/${typeid}`);
     // const allpointsdata = await allpoints.json();
+    localStorage.setItem('data', JSON.stringify({
+      access_token: "123", user: {
+        email: "154@qq.com"
+      }
+    }))
     const email = JSON.parse(localStorage.getItem("data")).user.email;
     // console.log(email)
     // const res = await fetch(`${config.baseUrl}/users/visits/${email}/${typeid}`);
-    const res = await fetch(
-      `${config.baseUrl}/pointsofinterest/${typeid}/${email}`
-    );
-    const data = await res.json();
-    console.log(data.pointsofinterest)
-    // return [data, allpointsdata];
-    return data;
+    // const res = await fetch(
+    //   `${config.baseUrl}/pointsofinterest/${typeid}/${email}`
+    // );
+    // const data = await res.json();
+    // console.log(data.pointsofinterest)
+    // // return [data, allpointsdata];
+    // return data;
   };
   // getPointsofinterest()
   useEffect(() => {
     (async () => {
-      const data = await getPointsofinterest();
-      console.log(data);
+      // const data = await getPointsofinterest();
+      // console.log(data);
       // setPointsofinterest(data.pointsofinterest);
       // setVisited(data[0].visits);
       // console.log(data[1])
       // setPointsofinterest(data[1].pointsofinterest)
-      setPointsofinterest(data.pointsofinterest);
+      let collection1 = [{
+        title: "Yosemite",
+        state: 'CA',
+        lat: "37.9083432",
+        lng: "-119.539726",
+        type_id: 1
+      }]
+
+      setPointsofinterest(collection1)
+      // setPointsofinterest(data.pointsofinterest);
     })();
   }, []);
 
